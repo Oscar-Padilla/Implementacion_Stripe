@@ -1,3 +1,5 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import img from './porsche-thumbwhite.webp';
@@ -5,7 +7,7 @@ import { CardFooter } from 'react-bootstrap';
 
 function Compra() {
   const handleButtonClick = () => {
-    window.open('https://buy.stripe.com/test_00gaHLfYwbXweXK288', '_blank');
+    window.location.href = 'https://buy.stripe.com/test_00gaHLfYwbXweXK288';
   };
 
   return (
@@ -29,6 +31,30 @@ function Compra() {
   );
 }
 
-export default Compra;
+function CompraConfirmada() {
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', backgroundColor: 'gray' }}>
+      <Card border="dark" style={{ width: '18rem', borderRadius: '15px' }}>
+        <Card.Body>
+          <Card.Title>Compra Confirmada</Card.Title>
+          <Card.Text>
+            ¡Gracias por tu compra! Tu pedido está en proceso.
+          </Card.Text>
+        </Card.Body>
+      </Card>
+    </div>
+  );
+}
 
+function App() {
+  return (
+    <Router>
+      <Routes>
+        <Route path="/compra-confirmada" element={<CompraConfirmada />} />
+        <Route path="/" element={<Compra />} />
+      </Routes>
+    </Router>
+  );
+}
 
+export default App;
